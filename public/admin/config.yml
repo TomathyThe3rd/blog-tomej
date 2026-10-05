@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: TOMEJ_GITHUB_USERNAME/blog-tomej
+  repo: TomathyThe3rd/blog-tomej
   branch: main
   base_url: https://TWOJ_WORKER.workers.dev  # Uzupełnimy w kroku 4
 
