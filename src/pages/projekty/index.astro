@@ -1,0 +1,60 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+import Header from '../../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+
+const posts = (await getCollection('projekty')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<!doctype html>
+<html lang="pl">
+	<head>
+		<BaseHead title={`Projekty | ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+		<style>
+			main { width: 960px; }
+			ul { list-style: none; padding: 0; }
+			ul li { margin-bottom: 2rem; }
+			.title { margin: 0; }
+			.date { margin: 0; color: rgb(var(--gray)); }
+			.status { margin: 0; color: rgb(var(--gray)); font-size: 0.875rem; }
+			.tech { margin: 0; font-size: 0.875rem; }
+			a { text-decoration: none; }
+			a:hover .title { color: rgb(var(--accent)); }
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>Projekty</h1>
+			<ul>
+				{posts.map((post) => (
+					<li>
+						<a href={`/projekty/${post.id}/`}>
+							{post.data.heroImage && (
+								<Image width={720} height={360} src={post.data.heroImage} alt="" />
+							)}
+							<h4 class="title">{post.data.title}</h4>
+							<p class="date">
+								<FormattedDate date={post.data.pubDate} />
+							</p>
+							{post.data.status && (
+								<p class="status">Status: {post.data.status}</p>
+							)}
+							{post.data.tech && (
+								<p class="tech">Tech: {post.data.tech.join(', ')}</p>
+							)}
+							<p>{post.data.description}</p>
+						</a>
+					</li>
+				))}
+			</ul>
+		</main>
+		<Footer />
+	</body>
+</html>

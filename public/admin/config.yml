@@ -1,0 +1,60 @@
+backend:
+  name: github
+  repo: TOMEJ_GITHUB_USERNAME/blog-tomej
+  branch: main
+  base_url: https://TWOJ_WORKER.workers.dev  # Uzupełnimy w kroku 4
+
+media_folder: "public/images"
+public_folder: "/images"
+
+collections:
+  - name: blog
+    label: Blog
+    folder: src/content/blog
+    create: true
+    fields:
+      - { label: Tytuł, name: title, widget: string }
+      - { label: Opis, name: description, widget: string }
+      - { label: Data, name: pubDate, widget: datetime }
+      - { label: Obraz, name: heroImage, widget: image, required: false }
+      - { label: Treść, name: body, widget: markdown }
+
+  - name: sport
+    label: Sport
+    folder: src/content/sport
+    create: true
+    fields:
+      - { label: Tytuł, name: title, widget: string }
+      - { label: Opis, name: description, widget: string }
+      - { label: Data, name: pubDate, widget: datetime }
+      - { label: Dyscyplina, name: dyscyplina, widget: string, required: false }
+      - { label: Dystans, name: dystans, widget: string, required: false }
+      - { label: Czas, name: czas, widget: string, required: false }
+      - { label: Treść, name: body, widget: markdown }
+
+  - name: projekty
+    label: Projekty
+    folder: src/content/projekty
+    create: true
+    fields:
+      - { label: Tytuł, name: title, widget: string }
+      - { label: Opis, name: description, widget: string }
+      - { label: Data, name: pubDate, widget: datetime }
+      - { label: Status, name: status, widget: select, options: ["planowany", "w-toku", "zakonczony", "porzucony"], required: false }
+      - { label: Technologie, name: tech, widget: list, required: false }
+      - { label: Treść, name: body, widget: markdown }
+
+  - name: muzyka
+    label: Muzyka
+    folder: src/content/muzyka
+    create: true
+    fields:
+      - { label: Tytuł, name: title, widget: string }
+      - { label: Opis, name: description, widget: string }
+      - { label: Data, name: pubDate, widget: datetime }
+      - { label: Wykonawca, name: wykonawca, widget: string, required: false }
+      - { label: Album, name: album, widget: string, required: false }
+      - { label: Rok, name: rok, widget: number, required: false }
+      - { label: Ocena, name: ocena, widget: number, required: false, min: 1, max: 10 }
+      - { label: Gatunek, name: gatunek, widget: string, required: false }
+      - { label: Treść, name: body, widget: markdown }

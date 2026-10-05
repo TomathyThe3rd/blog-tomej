@@ -1,0 +1,38 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="pl">
+	<head>
+		<BaseHead title={`Osiągnięcia | ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+		<style>
+			main { width: 720px; }
+			ul { padding-left: 1.5rem; }
+			li { margin-bottom: 0.5rem; }
+			.rok { color: rgb(var(--gray)); font-weight: bold; margin-right: 0.5rem; }
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>Osiągnięcia</h1>
+			<p>Lista rzeczy, które udało się zrobić. Będę aktualizował na bieżąco.</p>
+
+			<h2>2026</h2>
+			<ul>
+				<li><span class="rok">2026</span> Przykładowe osiągnięcie — podmień na swoje</li>
+				<li><span class="rok">2026</span> Kolejne osiągnięcie</li>
+			</ul>
+
+			<h2>2025</h2>
+			<ul>
+				<li><span class="rok">2025</span> Coś, co udało się w zeszłym roku</li>
+			</ul>
+		</main>
+		<Footer />
+	</body>
+</html>
