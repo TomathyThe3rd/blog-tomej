@@ -24,31 +24,36 @@ const posts = (await getCollection('projekty')).sort(
 			.meta { margin: 0; color: rgb(var(--gray)); font-size: 0.875rem; }
 			a { text-decoration: none; }
 			a:hover .title { color: rgb(var(--accent)); }
+			.pusto { color: rgb(var(--gray)); font-style: italic; }
 		</style>
 	</head>
 	<body>
 		<Header />
 		<main>
 			<h1>Projekty</h1>
-			<ul>
-				{posts.map((post) => (
-					<li>
-						<a href={`/projekty/${post.id}/`}>
-							<h4 class="title">{post.data.title}</h4>
-							<p class="date">
-								<FormattedDate date={post.data.pubDate} />
-							</p>
-							{post.data.status && (
-								<p class="meta">Status: {post.data.status}</p>
-							)}
-							{post.data.tech && post.data.tech.length > 0 && (
-								<p class="meta">Tech: {post.data.tech.join(', ')}</p>
-							)}
-							<p>{post.data.description}</p>
-						</a>
-					</li>
-				))}
-			</ul>
+			{posts.length === 0 ? (
+				<p class="pusto">Posty nadchodzą. Zajrzyj tu wkrótce.</p>
+			) : (
+				<ul>
+					{posts.map((post) => (
+						<li>
+							<a href={`/projekty/${post.id}/`}>
+								<h4 class="title">{post.data.title}</h4>
+								<p class="date">
+									<FormattedDate date={post.data.pubDate} />
+								</p>
+								{post.data.status && (
+									<p class="meta">Status: {post.data.status}</p>
+								)}
+								{post.data.tech && post.data.tech.length > 0 && (
+									<p class="meta">Tech: {post.data.tech.join(', ')}</p>
+								)}
+								<p>{post.data.description}</p>
+							</a>
+						</li>
+					))}
+				</ul>
+			)}
 		</main>
 		<Footer />
 	</body>

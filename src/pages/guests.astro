@@ -1,0 +1,221 @@
+---
+import GuestLayout from '../layouts/GuestLayout.astro';
+---
+
+<GuestLayout title="Księga gości" description="Zostaw ślad po sobie">
+	<style>
+		h1 { margin-top: 0; }
+		.intro { color: var(--gb-muted); margin-bottom: 2rem; }
+
+		form {
+			display: flex;
+			flex-direction: column;
+			gap: 0.75rem;
+			margin-bottom: 3rem;
+			padding: 1.5rem;
+			border: 1px solid var(--gb-border);
+			border-radius: 12px;
+			background: var(--gb-input-bg);
+		}
+
+		input, textarea {
+			font-family: inherit;
+			font-size: 1rem;
+			padding: 0.75rem;
+			border: 1px solid var(--gb-border);
+			border-radius: 8px;
+			background: var(--gb-bg);
+			color: var(--gb-fg);
+			transition: border-color 0.15s ease, box-shadow 0.15s ease;
+		}
+
+		input:focus, textarea:focus {
+			outline: none;
+			border-color: var(--gb-accent);
+			box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+		}
+
+		input::placeholder, textarea::placeholder {
+			color: var(--gb-muted);
+		}
+
+		textarea {
+			resize: vertical;
+			min-height: 120px;
+		}
+
+		button {
+			font-family: inherit;
+			font-size: 1rem;
+			font-weight: 500;
+			padding: 0.75rem 1.5rem;
+			border: none;
+			border-radius: 8px;
+			background: var(--gb-accent);
+			color: white;
+			cursor: pointer;
+			transition: background 0.15s ease;
+		}
+
+		button:hover:not(:disabled) {
+			background: var(--gb-accent-hover);
+		}
+
+		button:disabled {
+			opacity: 0.6;
+			cursor: wait;
+		}
+
+		.error {
+			color: var(--gb-error);
+			font-size: 0.9rem;
+			margin: 0;
+		}
+
+		.wpis {
+			border-bottom: 1px solid var(--gb-border);
+			padding: 1.25rem 0;
+		}
+
+		.wpis:last-child { border-bottom: none; }
+
+		.wpis-header {
+			display: flex;
+			align-items: baseline;
+			gap: 0.75rem;
+			margin-bottom: 0.5rem;
+		}
+
+		.wpis-nick { font-weight: 600; }
+		.wpis-data { color: var(--gb-muted); font-size: 0.85rem; }
+
+		.wpis-tresc {
+			margin: 0;
+			white-space: pre-wrap;
+			word-break: break-word;
+		}
+
+		.pusto {
+			color: var(--gb-muted);
+			font-style: italic;
+		}
+	</style>
+
+	<h1>Księga gości</h1>
+	<p class="intro">Zostaw ślad po sobie. Maksymalnie 500 znaków.</p>
+
+	<form id="form-guestbook">
+		<input
+			type="text"
+			name="nick"
+			placeholder="Nick (2-30 znaków)"
+			minlength="2"
+			maxlength="30"
+			required
+		/>
+		<textarea
+			name="wiadomosc"
+			placeholder="Wiadomość (2-500 znaków)"
+			minlength="2"
+			maxlength="500"
+			required
+		></textarea>
+		<p class="error" id="blad" hidden></p>
+		<button type="submit" id="przycisk">Wyślij</button>
+	</form>
+
+	<h2>Wpisy</h2>
+	<div id="wpisy">
+		<p class="pusto">Ładowanie…</p>
+	</div>
+
+	<script>
+		const API = '/api/guestbook';
+		const form = document.getElementById('form-guestbook') as HTMLFormElement;
+		const blad = document.getElementById('blad') as HTMLParagraphElement;
+		const przycisk = document.getElementById('przycisk') as HTMLButtonElement;
+		const wpisyEl = document.getElementById('wpisy') as HTMLDivElement;
+
+		function escapeHtml(s: string): string {
+			return s
+				.replace(/&/g, '&amp;')
+				.replace(/</g, '&lt;')
+				.replace(/>/g, '&gt;')
+				.replace(/"/g, '&quot;');
+		}
+
+		function formatDate(iso: string): string {
+			const d = new Date(iso);
+			return d.toLocaleString('pl-PL', {
+				year: 'numeric',
+				month: '2-digit',
+				day: '2-digit',
+				hour: '2-digit',
+				minute: '2-digit',
+			});
+		}
+
+		async function loadWpisy() {
+			try {
+				const res = await fetch(API);
+				const wpisy = await res.json();
+				if (!wpisy.length) {
+					wpisyEl.innerHTML = '<p class="pusto">Jeszcze nikt nie zostawił wpisu. Bądź pierwszy!</p>';
+					return;
+				}
+				wpisyEl.innerHTML = wpisy
+					.map(
+						(w: { nick: string; data: string; wiadomosc: string }) => `
+							<div class="wpis">
+								<div class="wpis-header">
+									<span class="wpis-nick">${escapeHtml(w.nick)}</span>
+									<span class="wpis-data">${formatDate(w.data)}</span>
+								</div>
+								<p class="wpis-tresc">${escapeHtml(w.wiadomosc)}</p>
+							</div>
+						`
+					)
+					.join('');
+			} catch (err) {
+				wpisyEl.innerHTML = '<p class="pusto">Nie udało się załadować wpisów.</p>';
+			}
+		}
+
+		form.addEventListener('submit', async (e) => {
+			e.preventDefault();
+			blad.hidden = true;
+			przycisk.disabled = true;
+			przycisk.textContent = 'Wysyłam…';
+
+			const nick = (form.elements.namedItem('nick') as HTMLInputElement).value;
+			const wiadomosc = (form.elements.namedItem('wiadomosc') as HTMLTextAreaElement).value;
+
+			try {
+				const res = await fetch(API, {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({ nick, wiadomosc }),
+				});
+
+				const dane = await res.json();
+
+				if (!res.ok) {
+					blad.textContent = dane.error || 'Coś poszło nie tak.';
+					blad.hidden = false;
+					return;
+				}
+
+				form.reset();
+				await loadWpisy();
+			} catch (err) {
+				blad.textContent = 'Nie udało się połączyć z serwerem.';
+				blad.hidden = false;
+			} finally {
+				przycisk.disabled = false;
+				przycisk.textContent = 'Wyślij';
+			}
+		});
+
+		loadWpisy();
+	</script>
+</GuestLayout>

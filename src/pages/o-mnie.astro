@@ -1,12 +1,25 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 ---
 
-<BaseLayout title="O mnie | tomej.xyz">
-	<h1>O mnie</h1>
-	<p>Cześć, jestem Tomasz. Tu kilka słów o sobie — czym się zajmuję, co lubię, czym się interesuję.</p>
-
-	<h2>Kontakt</h2>
-	<p>Mail: <a href="mailto:twoj@email.com">twoj@email.com</a></p>
-	<p>GitHub: <a href="https://github.com/TomathyThe3rd">github.com/TomathyThe3rd</a></p>
-</BaseLayout>
+<!doctype html>
+<html lang="pl">
+	<head>
+		<BaseHead title={`O mnie | ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+		<style>
+			main { width: 720px; }
+			.pusto { color: rgb(var(--gray)); font-style: italic; }
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>O mnie</h1>
+			<p class="pusto">Tutaj kiedyś się rozpiszę.</p>
+		</main>
+		<Footer />
+	</body>
+</html>

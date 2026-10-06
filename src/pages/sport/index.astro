@@ -24,32 +24,37 @@ const posts = (await getCollection('sport')).sort(
 			.meta { margin: 0; color: rgb(var(--gray)); font-size: 0.875rem; }
 			a { text-decoration: none; }
 			a:hover .title { color: rgb(var(--accent)); }
+			.pusto { color: rgb(var(--gray)); font-style: italic; }
 		</style>
 	</head>
 	<body>
 		<Header />
 		<main>
 			<h1>Sport</h1>
-			<ul>
-				{posts.map((post) => (
-					<li>
-						<a href={`/sport/${post.id}/`}>
-							<h4 class="title">{post.data.title}</h4>
-							<p class="date">
-								<FormattedDate date={post.data.pubDate} />
-							</p>
-							{(post.data.dyscyplina || post.data.dystans || post.data.czas) && (
-								<p class="meta">
-									{post.data.dyscyplina}
-									{post.data.dystans && ` — ${post.data.dystans}`}
-									{post.data.czas && ` — ${post.data.czas}`}
+			{posts.length === 0 ? (
+				<p class="pusto">Posty nadchodzą. Zajrzyj tu wkrótce.</p>
+			) : (
+				<ul>
+					{posts.map((post) => (
+						<li>
+							<a href={`/sport/${post.id}/`}>
+								<h4 class="title">{post.data.title}</h4>
+								<p class="date">
+									<FormattedDate date={post.data.pubDate} />
 								</p>
-							)}
-							<p>{post.data.description}</p>
-						</a>
-					</li>
-				))}
-			</ul>
+								{(post.data.dyscyplina || post.data.dystans || post.data.czas) && (
+									<p class="meta">
+										{post.data.dyscyplina}
+										{post.data.dystans && ` — ${post.data.dystans}`}
+										{post.data.czas && ` — ${post.data.czas}`}
+									</p>
+								)}
+								<p>{post.data.description}</p>
+							</a>
+						</li>
+					))}
+				</ul>
+			)}
 		</main>
 		<Footer />
 	</body>

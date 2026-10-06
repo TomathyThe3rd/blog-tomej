@@ -1,0 +1,84 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+
+interface Props {
+	title: string;
+	description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="pl">
+	<head>
+		<BaseHead title={title} description={description} />
+		<style>
+			:root {
+				--gb-bg: #ffffff;
+				--gb-fg: #1a1a1a;
+				--gb-muted: #6b7280;
+				--gb-border: #d1d5db;
+				--gb-input-bg: #f9fafb;
+				--gb-accent: #2563eb;
+				--gb-accent-hover: #1d4ed8;
+				--gb-error: #dc2626;
+			}
+
+			@media (prefers-color-scheme: dark) {
+				:root {
+					--gb-bg: #0f0f0f;
+					--gb-fg: #f5f5f5;
+					--gb-muted: #9ca3af;
+					--gb-border: #374151;
+					--gb-input-bg: #1a1a1a;
+					--gb-accent: #3b82f6;
+					--gb-accent-hover: #60a5fa;
+					--gb-error: #f87171;
+				}
+			}
+
+			* { box-sizing: border-box; }
+
+			body {
+				margin: 0;
+				font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+				background: var(--gb-bg);
+				color: var(--gb-fg);
+				line-height: 1.6;
+			}
+
+			.topbar {
+				border-bottom: 1px solid var(--gb-border);
+				padding: 1rem 1.5rem;
+			}
+
+			.topbar a {
+				color: var(--gb-muted);
+				text-decoration: none;
+				font-size: 0.9rem;
+				transition: color 0.15s ease;
+			}
+
+			.topbar a:hover {
+				color: var(--gb-accent);
+			}
+
+			main {
+				max-width: 720px;
+				margin: 0 auto;
+				padding: 2.5rem 1.5rem 4rem;
+			}
+
+			a { color: var(--gb-accent); }
+		</style>
+	</head>
+	<body>
+		<nav class="topbar">
+			<a href="https://tomej.xyz">← Powrót do tomej.xyz</a>
+		</nav>
+		<main>
+			<slot />
+		</main>
+	</body>
+</html>
