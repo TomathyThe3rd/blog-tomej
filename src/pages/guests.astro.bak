@@ -27,8 +27,6 @@ import GuestLayout from '../layouts/GuestLayout.astro';
 			background: var(--gb-bg);
 			color: var(--gb-fg);
 			transition: border-color 0.15s ease, box-shadow 0.15s ease;
-			width: 100%;
-			max-width: 100%;
 		}
 
 		input:focus, textarea:focus {

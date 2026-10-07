@@ -1,17 +1,26 @@
----
+﻿---
 interface Props {
-	date: Date;
+date: Date;
 }
-
 const { date } = Astro.props;
+const iso = date.toISOString();
 ---
 
-<time datetime={date.toISOString()}>
-	{
-		date.toLocaleDateString('en-us', {
-			year: 'numeric',
-			month: 'short',
-			day: 'numeric',
-		})
-	}
+<time datetime={iso} data-local-time={iso}>
+{date.toISOString().slice(0, 16).replace('T', ' ')} UTC
 </time>
+
+<script>
+document.querySelectorAll('time[data-local-time]').forEach((el) => {
+const iso = el.getAttribute('data-local-time');
+if (!iso) return;
+const d = new Date(iso);
+el.textContent = d.toLocaleString('pl-PL', {
+year: 'numeric',
+month: '2-digit',
+day: '2-digit',
+hour: '2-digit',
+minute: '2-digit',
+});
+});
+</script>
