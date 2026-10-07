@@ -1,0 +1,44 @@
+---
+// src/components/GiscusComments.astro
+const repoId = "R_kgDOU8-clQ";
+const categoryId = "DIC_kwDOU8-clc4DHSES";
+---
+
+<div id="giscus-container"></div>
+
+<script>
+  const loadGiscus = () => {
+    const container = document.getElementById('giscus-container');
+    if (!container) return;
+    container.innerHTML = '';
+
+    const script = document.createElement('script');
+    script.src = 'https://giscus.app/client.js';
+    script.setAttribute('data-repo', 'TomathyThe3rd/blog-tomej');
+    script.setAttribute('data-repo-id', 'R_kgDOU8-clQ');
+    script.setAttribute('data-category', 'Blog Comments');
+    script.setAttribute('data-category-id', 'DIC_kwDOU8-clc4DHSES');
+    script.setAttribute('data-mapping', 'pathname');
+    script.setAttribute('data-strict', '0');
+    script.setAttribute('data-reactions-enabled', '1');
+    script.setAttribute('data-emit-metadata', '0');
+    script.setAttribute('data-input-position', 'top');
+    script.setAttribute('data-theme', 'preferred_color_scheme');
+    script.setAttribute('data-lang', 'pl');
+    script.setAttribute('data-loading', 'lazy');
+    script.crossOrigin = 'anonymous';
+    script.async = true;
+
+    container.appendChild(script);
+  };
+
+  document.addEventListener('astro:page-load', loadGiscus);
+</script>
+
+<style>
+  #giscus-container {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgb(var(--gray-light));
+  }
+</style>
