@@ -3,13 +3,28 @@ const today = new Date();
 ---
 
 <footer>
-	&copy; {today.getFullYear()} Tomasz Książek. Wszelkie prawa zastrzeżone.
+	<div class="footer-content">
+		<p>&copy; {today.getFullYear()} Tomasz Książek. Wszelkie prawa zastrzeżone.</p>
+	</div>
 </footer>
+
 <style>
 	footer {
-		padding: 2em 1em 2em 1em;
-		background: linear-gradient(var(--gray-gradient)) no-repeat;
-		color: rgb(var(--gray));
+		width: 100%;
+		background-color: rgb(var(--black)); /* Kolor tła taki jak w headerze */
+		color: rgb(var(--gray)); /* Kolor tekstu taki jak w headerze */
+		margin-top: auto; /* Dopychanie stopki do samego dołu ekranu */
+	}
+
+	.footer-content {
+		max-width: 720px;
+		margin: 0 auto;
+		padding: 2rem 1rem;
 		text-align: center;
+		font-size: 0.9rem;
+	}
+
+	p {
+		margin: 0;
 	}
 </style>
