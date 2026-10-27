@@ -10,15 +10,69 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 	<head>
 		<BaseHead title={`Szkoła | ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
 		<style>
-			main { width: 720px; }
-			.pusto { color: rgb(var(--gray)); font-style: italic; }
+			main {
+				width: 100%;
+				max-width: 720px;
+				margin: 0 auto;
+				padding: 2rem 1rem 4rem;
+			}
+			.wyroznienie {
+				text-align: center;
+				margin-top: 3rem;
+				margin-bottom: 1.5rem;
+				font-size: 1.5rem;
+				letter-spacing: 1px;
+				border-bottom: 1px solid rgb(var(--gray-light));
+				padding-bottom: 0.5rem;
+			}
+			.wyroznienie:first-of-type {
+				margin-top: 1rem;
+			}
+			.klasy {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+			}
+			.klasy li {
+				margin-bottom: 0.5rem;
+				font-size: 1.05rem;
+			}
+			.konkurs {
+				color: rgb(var(--accent));
+				font-weight: 600;
+				margin-left: 1rem;
+				margin-bottom: 1rem;
+				font-size: 0.95rem;
+			}
 		</style>
 	</head>
 	<body>
 		<Header />
 		<main>
-			<h1>Szkoła</h1>
-			<p class="pusto">Tutaj kiedyś się rozpiszę.</p>
+			<h2 class="wyroznienie">SZKOŁA PODSTAWOWA</h2>
+			<ul class="klasy">
+				<li>2014/15 - Klasa 1B</li>
+				<li>2015/16 - Klasa 2B</li>
+				<li>2016/17 - Klasa 2A</li>
+				<li>2017/18 - Klasa 3A</li>
+			</ul>
+			<p class="konkurs">Powiatowy Konkurs Ortograficzny - 3 Miejsce</p>
+			<ul class="klasy">
+				<li>2018/19 - Klasa 4A</li>
+				<li>2019/20 - Klasa 5A</li>
+				<li>2020/21 - Klasa 6</li>
+				<li>2021/22 - Klasa 7</li>
+				<li>2022/23 - Klasa 8</li>
+			</ul>
+			<p class="konkurs">Konkurs Kuratoryjny z Matematyki - 230 miejsce (rejon)</p>
+
+			<h2 class="wyroznienie">SZKOŁA ŚREDNIA</h2>
+			<ul class="klasy">
+				<li>2023/24 - Klasa 1 Technik Informatyk - Średnia: 4,81</li>
+				<li>2024/25 - Klasa 2 Technik Informatyk - Średnia: 4,87</li>
+				<li>2025/26 - Klasa 3 Technik Informatyk - Średnia: 4,93</li>
+				<li>2026/27 - Klasa 4 Technik Informatyk</li>
+			</ul>
 		</main>
 		<Footer />
 	</body>
