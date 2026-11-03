@@ -203,10 +203,10 @@ th {
 }
 
 /* Komentarze */
-#isso-thread .isso-comment {
-  border-top: 1px solid rgb(var(--gray-light));
-  padding-top: 1rem;
-  margin-top: 1rem;
+/* Ukrycie pól Email i Strona, jeśli Isso ich nie usunie */
+#isso-thread .isso-postbox .isso-input-wrapper:has(input[name="email"]),
+#isso-thread .isso-postbox .isso-input-wrapper:has(input[name="website"]) {
+  display: none !important;
 }
 
 #isso-thread .isso-comment .isso-author {
