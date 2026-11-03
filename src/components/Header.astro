@@ -22,8 +22,9 @@ import HeaderLink from './HeaderLink.astro';
 	header {
 		margin: 0;
 		padding: 0 1em;
-		background: var(--bg-elevated);
-		border-bottom: 1px solid var(--border);
+		/* UŻYWAMY rgb() WOKÓŁ ZMIENNEJ */
+		background: rgb(var(--bg-elevated));
+		border-bottom: 1px solid rgb(var(--border));
 	}
 
 	h2 {
@@ -33,12 +34,12 @@ import HeaderLink from './HeaderLink.astro';
 
 	h2 a {
 		text-decoration: none;
-		color: var(--text);
+		color: rgb(var(--text));
 		font-weight: 700;
 	}
 
 	h2 a:hover {
-		color: var(--accent);
+		color: rgb(var(--accent));
 	}
 
 	nav {
@@ -53,19 +54,22 @@ import HeaderLink from './HeaderLink.astro';
 
 	nav a {
 		padding: 1em 0.5em;
-		color: var(--text-muted);
+		color: rgb(var(--text-muted));
 		border-bottom: 4px solid transparent;
 		text-decoration: none;
 		font-size: 0.95em;
+		transition: color 0.2s ease; /* Dodane dla płynności */
 	}
 
+	/* TU JEST NAPRAWA HOVERA */
 	nav a:hover {
-		color: var(--text);
+		color: rgb(var(--accent)) !important; /* Podświetlenie na czerwono */
+		border-bottom-color: rgb(var(--accent)); /* Opcjonalna kreska na dole przy najechaniu */
 	}
 
 	nav a.active {
-		color: var(--text);
-		border-bottom-color: var(--accent);
+		color: rgb(var(--text));
+		border-bottom-color: rgb(var(--accent));
 	}
 
 	.internal-links {

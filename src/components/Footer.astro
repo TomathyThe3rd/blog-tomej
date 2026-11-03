@@ -11,13 +11,15 @@ const today = new Date();
 <style>
 	footer {
 		width: 100%;
-		background-color: rgb(var(--black)); /* Kolor tła taki jak w headerze */
-		color: rgb(var(--gray)); /* Kolor tekstu taki jak w headerze */
-		margin-top: auto; /* Dopychanie stopki do samego dołu ekranu */
+		/* Używamy zmiennej bg-elevated, żeby stopka była jaśniejsza od tła strony */
+		background-color: rgb(var(--bg-elevated)); 
+		color: rgb(var(--text-muted)); /* Delikatnie przygaszony tekst */
+		margin-top: auto;
+		border-top: 1px solid rgb(var(--border)); /* Linia oddzielająca, jak w headerze */
 	}
 
 	.footer-content {
-		max-width: 720px;
+		max-width: var(--content-width);
 		margin: 0 auto;
 		padding: 2rem 1rem;
 		text-align: center;
