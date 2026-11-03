@@ -23,8 +23,8 @@
 
 html {
 	font-family: var(--font-sans);
-	background: var(--bg);
-	color: var(--text);
+	background: rgb(var(--bg));
+	color: rgb(var(--text));
 	line-height: 1.6;
 	-webkit-font-smoothing: antialiased;
 }
