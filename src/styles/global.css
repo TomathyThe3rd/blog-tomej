@@ -7,17 +7,20 @@
 
 :root {
 	/* Tło i tekst */
-	--bg: #1c2833;
-	--bg-elevated: #243342;
-	--text: #e8e8e8;
-	--text-muted: #9aa5b1;
+	--bg: 28, 40, 51;             /* Zamiast #1c2833 */
+	--bg-elevated: 36, 51, 66;    /* Zamiast #243342 */
+	--text: 232, 232, 232;        /* Zamiast #e8e8e8 */
+	--text-muted: 154, 165, 177;  /* Zamiast #9aa5b1 */
 
 	/* Akcenty */
-	--accent: #f66969;
-	--accent-strong: #bf2026;
+	--accent: 246, 105, 105;      /* Zamiast #f66969 */
+	--accent-strong: 191, 32, 38; /* Zamiast #bf2026 */
 
 	/* Obramowania */
-	--border: #2f3e4d;
+	--border: 47, 62, 77;         /* Zamiast #2f3e4d */
+	
+	--gray-light: 47, 62, 77;     /* Upewnij się, że to też jest RGB */
+	--gray: 154, 165, 177;
 
 	/* Typografia */
 	--font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;

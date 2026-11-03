@@ -9,7 +9,7 @@ export async function getStaticPaths() {
 		props: post,
 	}));
 }
-type Props = CollectionEntry<'sport'>;
+type Props = CollectionEntry<'blog'>;
 
 const post = Astro.props;
 const { Content } = await render(post);
@@ -25,4 +25,59 @@ const { Content } = await render(post);
 	        src="https://comments.tomej.xyz/js/embed.min.js"></script>
 	<section id="isso-thread"></section>
 
+	<style is:global>
+		/* Tło formularza */
+		#isso-thread .isso-postbox {
+			background-color: #243342 !important;
+			border: 1px solid #2f3e4d !important;
+			border-radius: 12px !important;
+			padding: 1.5rem !important;
+		}
+
+		/* Pola tekstowe */
+		#isso-thread .isso-postbox input[type="text"],
+		#isso-thread .isso-postbox textarea {
+			background-color: #1c2833 !important;
+			color: #e8e8e8 !important;
+			border: 1px solid #2f3e4d !important;
+			border-radius: 8px !important;
+			padding: 0.75rem !important;
+			width: 100% !important;
+			box-shadow: none !important;
+			-webkit-appearance: none !important;
+			appearance: none !important;
+		}
+
+		/* Ramka przy kliknięciu */
+		#isso-thread .isso-postbox input[type="text"]:focus,
+		#isso-thread .isso-postbox textarea:focus {
+			border-color: #f66969 !important;
+			outline: none !important;
+		}
+
+		/* Przyciski */
+		#isso-thread .isso-postbox button,
+		#isso-thread .isso-postbox .isso-submit {
+			background-color: #f66969 !important;
+			color: #fff !important;
+			border: none !important;
+			border-radius: 8px !important;
+			padding: 0.6rem 1.2rem !important;
+			font-weight: bold !important;
+			cursor: pointer !important;
+			box-shadow: none !important;
+			text-shadow: none !important;
+		}
+
+		#isso-thread .isso-postbox button:hover,
+		#isso-thread .isso-postbox .isso-submit:hover {
+			background-color: #bf2026 !important;
+		}
+
+		/* Ukrycie maila i strony */
+		#isso-thread .isso-input-wrapper:has(input[name="email"]),
+		#isso-thread .isso-input-wrapper:has(input[name="website"]) {
+			display: none !important;
+		}
+	</style>
 </BlogPost>
