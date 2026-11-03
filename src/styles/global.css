@@ -6,27 +6,17 @@
 }
 
 :root {
-	/* Tło i tekst */
-	--bg: 28, 40, 51;             /* Zamiast #1c2833 */
-	--bg-elevated: 36, 51, 66;    /* Zamiast #243342 */
-	--text: 232, 232, 232;        /* Zamiast #e8e8e8 */
-	--text-muted: 154, 165, 177;  /* Zamiast #9aa5b1 */
-
-	/* Akcenty */
-	--accent: 246, 105, 105;      /* Zamiast #f66969 */
-	--accent-strong: 191, 32, 38; /* Zamiast #bf2026 */
-
-	/* Obramowania */
-	--border: 47, 62, 77;         /* Zamiast #2f3e4d */
-	
-	--gray-light: 47, 62, 77;     /* Upewnij się, że to też jest RGB */
+	--bg: 28, 40, 51;
+	--bg-elevated: 36, 51, 66;
+	--text: 232, 232, 232;
+	--text-muted: 154, 165, 177;
+	--accent: 246, 105, 105;
+	--accent-strong: 191, 32, 38;
+	--border: 47, 62, 77;
 	--gray: 154, 165, 177;
-
-	/* Typografia */
+	--gray-light: 47, 62, 77;
 	--font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 	--font-mono: 'JetBrains Mono', 'Courier New', monospace;
-
-	/* Layout */
 	--content-width: 720px;
 	--wide-width: 960px;
 }
@@ -156,114 +146,55 @@ th {
 	font-weight: 600;
 }
 
-/* --- Stylizacja Isso --- */
+/* --- Stylizacja Isso (Komentarze) --- */
 #isso-thread {
-  margin-top: 3rem !important;
-  padding-top: 2rem !important;
-  border-top: 1px solid rgb(var(--gray-light)) !important;
+	margin-top: 3rem;
+	padding-top: 2rem;
+	border-top: 1px solid rgb(var(--gray-light));
 }
 
-/* Główne pudełko formularza */
 #isso-thread .isso-postbox {
-  background-color: rgb(var(--bg-elevated, 36 51 66)) !important; 
-  border: 1px solid rgb(var(--gray-light)) !important;
-  border-radius: 12px !important;
-  padding: 1.5rem !important;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+	background-color: rgb(var(--bg-elevated)) !important;
+	border: 1px solid rgb(var(--gray-light)) !important;
+	border-radius: 12px !important;
+	padding: 1.5rem !important;
 }
 
-/* Pola tekstowe (Nick i Komentarz) */
 #isso-thread .isso-postbox input[type="text"],
 #isso-thread .isso-postbox textarea {
-  width: 100% !important;
-  background-color: rgb(var(--bg)) !important; 
-  color: rgb(var(--text)) !important; 
-  border: 1px solid rgb(var(--gray-light)) !important;
-  border-radius: 8px !important;
-  padding: 0.85rem !important;
-  font-family: inherit !important;
-  font-size: 1rem !important;
-  margin-bottom: 1rem !important;
-  box-shadow: none !important;
-  -webkit-appearance: none !important; 
-  appearance: none !important;
+	background-color: rgb(var(--bg)) !important;
+	color: rgb(var(--text)) !important;
+	border: 1px solid rgb(var(--gray-light)) !important;
+	border-radius: 8px !important;
+	padding: 0.75rem !important;
+	width: 100% !important;
+	-webkit-appearance: none !important;
+	appearance: none !important;
 }
 
 #isso-thread .isso-postbox input[type="text"]:focus,
 #isso-thread .isso-postbox textarea:focus {
-  outline: none !important;
-  border-color: rgb(var(--accent)) !important;
-  box-shadow: 0 0 0 3px rgba(246, 105, 105, 0.2) !important;
+	border-color: rgb(var(--accent)) !important;
+	outline: none !important;
 }
 
-#isso-thread .isso-postbox textarea {
-  min-height: 120px !important;
-  resize: vertical !important;
-}
-
-/* Etykiety (Imię/nick) */
-#isso-thread .isso-postbox label {
-  display: block !important;
-  font-size: 0.9rem !important;
-  color: rgb(var(--gray)) !important;
-  margin-bottom: 0.4rem !important;
-  font-weight: 600 !important;
-}
-
-/* Przyciski (Wyślij, Podgląd, Edytuj) */
 #isso-thread .isso-postbox button,
 #isso-thread .isso-postbox .isso-submit {
-  display: inline-block !important;
-  width: auto !important;
-  min-width: 100px !important;
-  background-color: rgb(var(--accent)) !important;
-  color: white !important;
-  border: 1px solid transparent !important;
-  border-radius: 8px !important;
-  padding: 0.6rem 1.2rem !important;
-  font-size: 0.95rem !important;
-  font-weight: 600 !important;
-  font-family: inherit !important;
-  cursor: pointer !important;
-  margin-right: 0.5rem !important;
-  margin-top: 0.5rem !important;
-  transition: background-color 0.15s ease, transform 0.1s ease !important;
-  text-shadow: none !important;
-  box-shadow: none !important;
+	background-color: rgb(var(--accent)) !important;
+	color: #fff !important;
+	border: none !important;
+	border-radius: 8px !important;
+	padding: 0.6rem 1.2rem !important;
+	font-weight: bold !important;
+	cursor: pointer !important;
 }
 
 #isso-thread .isso-postbox button:hover,
 #isso-thread .isso-postbox .isso-submit:hover {
-  background-color: rgb(var(--accent-strong, 191 32 38)) !important; 
-  transform: translateY(-1px) !important;
+	background-color: rgb(var(--accent-strong)) !important;
 }
 
-/* Ukrycie pól Email i Strona */
-#isso-thread .isso-postbox .isso-input-wrapper:has(input[name="email"]),
-#isso-thread .isso-postbox .isso-input-wrapper:has(input[name="website"]) {
-  display: none !important;
-}
-
-/* Stylizacja pojedynczych komentarzy */
-#isso-thread .isso-comment {
-  border-bottom: 1px solid rgb(var(--gray-light)) !important;
-  padding: 1.5rem 0 !important;
-}
-
-#isso-thread .isso-comment .isso-author {
-  color: rgb(var(--accent)) !important;
-  font-weight: bold !important;
-  font-size: 1.05rem !important;
-}
-
-#isso-thread .isso-comment .isso-text {
-  color: rgb(var(--text)) !important;
-  line-height: 1.6 !important;
-  margin-top: 0.5rem !important;
-  word-break: break-word !important; 
-}
-
-/* Ukrycie stopki Isso (Powered by) */
-#isso-thread .isso-footer {
-  display: none !important;
+#isso-thread .isso-input-wrapper:has(input[name="email"]),
+#isso-thread .isso-input-wrapper:has(input[name="website"]) {
+	display: none !important;
 }
