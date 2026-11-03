@@ -152,3 +152,78 @@ th {
 	color: var(--accent);
 	font-weight: 600;
 }
+
+/* --- Stylizacja Isso --- */
+#isso-thread {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgb(var(--gray-light));
+}
+
+/* Formularz */
+#isso-thread .isso-postbox {
+  background: rgb(var(--bg-elevated, 36 51 66)); /* Ciemniejsze tło formularza */
+  border: 1px solid rgb(var(--gray-light));
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+#isso-thread .isso-postbox input[type="text"],
+#isso-thread .isso-postbox textarea {
+  width: 100%;
+  background: rgb(var(--bg));
+  color: rgb(var(--text));
+  border: 1px solid rgb(var(--gray-light));
+  border-radius: 8px;
+  padding: 0.75rem;
+  font-family: inherit;
+  margin-bottom: 0.5rem;
+}
+
+#isso-thread .isso-postbox input[type="text"]:focus,
+#isso-thread .isso-postbox textarea:focus {
+  outline: none;
+  border-color: rgb(var(--accent));
+}
+
+#isso-thread .isso-postbox .isso-submit {
+  background: rgb(var(--accent));
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+#isso-thread .isso-postbox .isso-submit:hover {
+  opacity: 0.9;
+}
+
+/* Komentarze */
+#isso-thread .isso-comment {
+  border-top: 1px solid rgb(var(--gray-light));
+  padding-top: 1rem;
+  margin-top: 1rem;
+}
+
+#isso-thread .isso-comment .isso-author {
+  color: rgb(var(--accent));
+  font-weight: bold;
+}
+
+#isso-thread .isso-comment .isso-text {
+  color: rgb(var(--text));
+}
+
+#isso-thread .isso-comment-footer a {
+  color: rgb(var(--gray));
+  font-size: 0.85rem;
+}
+
+/* Ukrycie stopki Isso (Powered by) */
+#isso-thread .isso-footer {
+  display: none;
+}
