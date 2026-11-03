@@ -24,5 +24,49 @@ const { Content } = await render(post);
 			data-isso-require-email="false"
 	        src="https://comments.tomej.xyz/js/embed.min.js"></script>
 	<section id="isso-thread"></section>
+
+<script>
+  // Funkcja, która naprawia style
+  const fixIssoStyles = () => {
+    // 1. Znajdź formularz i pola
+    const postbox = document.querySelector('.isso-postbox');
+    if (postbox) {
+      postbox.style.backgroundColor = '#243342'; // Ciemne tło
+      postbox.style.border = '1px solid #2f3e4d';
+      postbox.style.borderRadius = '12px';
+      postbox.style.padding = '1.5rem';
+    }
+
+    // 2. Pola tekstowe
+    const inputs = document.querySelectorAll('.isso-postbox input[type="text"], .isso-postbox textarea');
+    inputs.forEach(input => {
+      input.style.backgroundColor = '#1c2833';
+      input.style.color = '#e8e8e8';
+      input.style.border = '1px solid #2f3e4d';
+      input.style.borderRadius = '8px';
+      input.style.padding = '0.75rem';
+    });
+
+    // 3. Przyciski
+    const buttons = document.querySelectorAll('.isso-postbox button, .isso-postbox .isso-submit');
+    buttons.forEach(btn => {
+      btn.style.backgroundColor = '#f66969';
+      btn.style.color = '#ffffff';
+      btn.style.border = 'none';
+      btn.style.borderRadius = '8px';
+      btn.style.padding = '0.6rem 1.2rem';
+      btn.style.fontWeight = 'bold';
+      btn.style.cursor = 'pointer';
+    });
+  };
+
+  // Uruchamiamy to co pół sekundy przez pierwsze 5 sekund (Isso potrzebuje chwili na wygenerowanie formularza)
+  let attempts = 0;
+  const interval = setInterval(() => {
+    fixIssoStyles();
+    attempts++;
+    if (attempts > 10) clearInterval(interval); // Zatrzymaj po 10 próbach
+  }, 500);
+</script>
 	
 </BlogPost>
